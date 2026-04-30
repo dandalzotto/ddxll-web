@@ -143,13 +143,36 @@ li { font-size: 3rem; }
 
 /* --- Triggers (Desktop Hover & Mobile Active Class) --- */
 
-/* Desktop: Open on hover */
+/* --- Base Caption (Mobile First: Always Visible) --- */
+.caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-size: 12px;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: all 0.2s ease-out;
+    
+    /* Visible by default for mobile */
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* --- Desktop Only (Hover to Reveal) --- */
 @media (hover: hover) {
-    .accordion-item:hover .gallery-wrapper {
-        grid-template-rows: 1fr;
+    /* Hide the caption by default on devices with a mouse */
+    .caption {
+        transform: translateY(100%);
+        opacity: 0;
     }
-    .accordion-item:hover .gallery-inner {
-        padding: 12px 0; /* Add spacing only when open */
+    
+    /* Reveal it when hovering over the image box */
+    .image-box:hover .caption {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 
